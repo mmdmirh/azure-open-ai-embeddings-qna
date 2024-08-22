@@ -20,16 +20,16 @@ jobs:
     - name: Build and Push Docker Images
       run: |
         # Build and push the WebApp image
-        docker build . --file WebApp.Dockerfile --tag fruocco/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
-        docker tag fruocco/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER fruocco/oai-embeddings:latest
-        docker push fruocco/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
-        docker push fruocco/oai-embeddings:latest
+        docker build . --file WebApp.Dockerfile --tag mmdmirh/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
+        docker tag mmdmirh/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER mmdmirh/oai-embeddings:latest
+        docker push mmdmirh/oai-embeddings:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
+        docker push mmdmirh/oai-embeddings:latest
 
         # Build and push the BatchProcess image
-        docker build . --file BatchProcess.Dockerfile --tag fruocco/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
-        docker tag fruocco/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER fruocco/oai-batch:latest
-        docker push fruocco/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
-        docker push fruocco/oai-batch:latest
+        docker build . --file BatchProcess.Dockerfile --tag mmdmirh/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
+        docker tag mmdmirh/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER mmdmirh/oai-batch:latest
+        docker push mmdmirh/oai-batch:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER
+        docker push mmdmirh/oai-batch:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,5 +40,5 @@ jobs:
       uses: azure/webapps-deploy@v3
       with:
         app-name: 'embeddings-qna' # Replace with your app name
-        images: fruocco/oai-embeddings:latest # The image to deploy
+        images: mmdmirh/oai-embeddings:latest # The image to deploy
         publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
